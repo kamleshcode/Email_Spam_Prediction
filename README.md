@@ -1,2 +1,3 @@
 # Email_Spam_Prediction
-To detect whether mail is spam or ham
+
+Email spam prediction involves using machine learning techniques to classify emails as either spam or not spam (ham).
