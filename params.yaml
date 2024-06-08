@@ -1,0 +1,4 @@
+multinomialnb:
+  alpha: 1.0
+  fit_prior: True
+  class_prior: None
