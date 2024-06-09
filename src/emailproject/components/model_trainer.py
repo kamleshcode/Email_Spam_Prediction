@@ -7,10 +7,6 @@ from emailproject.entity.config_entity import ModelTrainerConfig
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-
-from sklearn.feature_extraction.text import CountVectorizer
-
-
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
         self.config = config
