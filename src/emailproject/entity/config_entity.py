@@ -29,6 +29,7 @@ class ModelTrainerConfig:
     model_name: str
     alpha: float
     target_column: str
+    vectorizer_name: str = "count_vectorizer.pkl"
       
     
 @dataclass(frozen=True)
@@ -39,3 +40,6 @@ class ModelEvaluationConfig:
     all_params: dict
     metric_file_name: Path
     target_column: str
+    vectorizer_name: str = "count_vectorizer.pkl"
+    
+    

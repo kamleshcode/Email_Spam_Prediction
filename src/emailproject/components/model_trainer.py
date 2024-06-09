@@ -6,7 +6,6 @@ import joblib
 from emailproject.entity.config_entity import ModelTrainerConfig
 from sklearn.feature_extraction.text import CountVectorizer
 
-
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
         self.config = config
@@ -25,9 +24,9 @@ class ModelTrainer:
         
         cv = CountVectorizer()
         train_x = cv.fit_transform(train_x.iloc[:, 0])  # Assuming the text data is in the first column
-        test_x = cv.transform(test_x.iloc[:, 0])
 
         nb = MultinomialNB()
         nb.fit(train_x, train_y.ravel())
 
         joblib.dump(nb, os.path.join(self.config.root_dir, self.config.model_name))
+        joblib.dump(cv, os.path.join(self.config.root_dir, self.config.vectorizer_name))

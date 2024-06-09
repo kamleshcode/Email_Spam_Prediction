@@ -3,6 +3,7 @@ from emailproject import logger
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from emailproject.entity.config_entity import DataTransformationConfig
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 class DataTransformation:
@@ -19,6 +20,7 @@ class DataTransformation:
 
         train.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
         test.to_csv(os.path.join(self.config.root_dir, "test.csv"),index = False)
+        
 
         logger.info("Splited data into training and test sets")
         logger.info(train.shape)

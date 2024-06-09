@@ -75,7 +75,8 @@ class ConfigurationManager:
             test_data_path = config.test_data_path,
             model_name = config.model_name,
             alpha = params.alpha,
-            target_column = schema.name
+            target_column = schema.name,
+            vectorizer_name = config.vectorizer_name
             
         )
 
@@ -94,8 +95,9 @@ class ConfigurationManager:
             model_path = config.model_path,
             all_params=params,
             metric_file_name = config.metric_file_name,
-            target_column = schema.name
-           
+            target_column = schema.name,
+            vectorizer_name = config.vectorizer_name
+        
         )
 
         return model_evaluation_config
