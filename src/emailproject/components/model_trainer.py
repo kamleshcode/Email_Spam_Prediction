@@ -4,7 +4,11 @@ from emailproject import logger
 from sklearn.naive_bayes import MultinomialNB
 import joblib
 from emailproject.entity.config_entity import ModelTrainerConfig
+from sklearn.feature_extraction.text import CountVectorizer
 
+
+
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 class ModelTrainer:
@@ -20,11 +24,14 @@ class ModelTrainer:
 
         train_x = train_data.drop([self.config.target_column], axis=1)
         test_x = test_data.drop([self.config.target_column], axis=1)
-        train_y = train_data[[self.config.target_column]]
-        test_y = test_data[[self.config.target_column]]
+        train_y = train_data[self.config.target_column].values
+        test_y = test_data[self.config.target_column].values
+        
+        cv = CountVectorizer()
+        train_x = cv.fit_transform(train_x.iloc[:, 0])  # Assuming the text data is in the first column
+        test_x = cv.transform(test_x.iloc[:, 0])
 
+        nb = MultinomialNB()
+        nb.fit(train_x, train_y.ravel())
 
-        lr = MultinomialNB()
-        lr.fit(train_x, train_y)
-
-        joblib.dump(lr, os.path.join(self.config.root_dir, self.config.model_name))
+        joblib.dump(nb, os.path.join(self.config.root_dir, self.config.model_name))
