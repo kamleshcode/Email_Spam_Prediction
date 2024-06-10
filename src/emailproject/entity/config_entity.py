@@ -29,7 +29,7 @@ class ModelTrainerConfig:
     model_name: str
     alpha: float
     target_column: str
-    vectorizer_name: str = "count_vectorizer.pkl"
+    vectorizer_name: str 
       
     
 @dataclass(frozen=True)

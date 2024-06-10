@@ -7,7 +7,6 @@ import numpy as np
 import joblib
 from emailproject.entity.config_entity import ModelEvaluationConfig
 from pathlib import Path
-from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -28,11 +27,7 @@ class ModelEvaluation:
         test_x = test_data.drop([self.config.target_column], axis=1)
         test_y = test_data[self.config.target_column].values
         
-        # for column in test_x.columns:
-        #     if test_x[column].dtype == 'object':
-        #         # Apply label encoding or any other encoding method
-        #         le = LabelEncoder()
-        #         test_x[column] = le.fit_transform(test_x[column].astype(str))
+
         test_x = cv.transform(test_x.iloc[:, 0])
         
         predicted_qualities = model.predict(test_x)
