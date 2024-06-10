@@ -3,8 +3,9 @@ from emailproject.utils.common import read_yaml, create_directories
 from emailproject.entity.config_entity import (DataIngestionConfig,
                                                DataTransformationConfig,
                                                DataValidationConfig,
-                                               ModelEvaluationConfig,
-                                               ModelTrainerConfig)
+                                               ModelTrainerConfig,
+                                               ModelEvaluationConfig
+                                               )
 
 
 class ConfigurationManager:
@@ -96,7 +97,7 @@ class ConfigurationManager:
             all_params=params,
             metric_file_name = config.metric_file_name,
             target_column = schema.name,
-            vectorizer_name = config.vectorizer_name
+            vectorizer_path= config.vectorizer_path
         
         )
 

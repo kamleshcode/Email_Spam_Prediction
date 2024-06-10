@@ -10,6 +10,7 @@ from pathlib import Path
 from sklearn.preprocessing import LabelEncoder
 
 
+
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
@@ -21,7 +22,8 @@ class ModelEvaluation:
     def save_results(self):
         test_data = pd.read_csv(self.config.test_data_path)
         model = joblib.load(self.config.model_path)
-        cv = joblib.load(os.path.join(self.config.root_dir, 'count_vectorizer.pkl'))
+        cv = joblib.load(os.path.join(self.config.vectorizer_path))
+
 
         test_x = test_data.drop([self.config.target_column], axis=1)
         test_y = test_data[self.config.target_column].values
@@ -39,5 +41,5 @@ class ModelEvaluation:
         
         # Saving metrics as JSON
         scores = {"accuracy": accuracy}
-        self.save_json(path=Path(self.config.metric_file_name), data=scores)
+        save_json(path=Path(self.config.metric_file_name), data=scores)
         
