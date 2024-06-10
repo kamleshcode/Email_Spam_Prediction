@@ -46,7 +46,7 @@ st.markdown(
     """
     <style>
     .stApp{
-        background-image: url("C:\Users\HP\Email_Spam_Prediction");
+        background-image: url("static\image.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
