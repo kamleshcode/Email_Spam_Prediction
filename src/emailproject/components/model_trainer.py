@@ -24,7 +24,6 @@ class ModelTrainer:
         
         cv = CountVectorizer()
         train_x = cv.fit_transform(train_x.iloc[:, 0])
-        test_x = cv.fit_transform(test_x.iloc[:, 0])# Assuming the text data is in the first column
 
         nb = MultinomialNB()
         nb.fit(train_x, train_y.ravel())

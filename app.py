@@ -1,26 +1,27 @@
 import streamlit as st
-import numpy as np
-import subprocess
-from src.emailproject.pipeline.prediction import PredictionPipeline
-
-st.header("Email Spam Prediction", divider="rainbow")
-st.write("Enter email and know whether it is spam or ham")
-
-    
-input = st.text_input("Enter Email Text", key="email")
+import pandas as pd
+from emailproject.pipeline.prediction import PredictionPipeline
 
 def start_predicting():
-    st.write("Magic is happening......")
-    with st.spinner("Predicting"):
-        data = np.array(input).reshape(1, -1)
-        obj = PredictionPipeline()
-        predicted_value = obj.predict(data)
-
-        if predicted_value == 1:
-            st.error("It is spam", icon="✅")
-        elif predicted_value == 0:
-            st.success("It is not spam", icon="🚨")
-
-if st.button("Submit"):
-    start_predicting()
+    st.title("Email Spam Prediction")
+    st.write("Enter email and know whether it is spam or ham")
     
+    email_text = st.text_area("Enter Email Text")
+    
+    if st.button("Predict"):
+        if email_text:
+            try:
+                obj = PredictionPipeline()
+                # Convert email_text to a list of one element (string)
+                data = [email_text]
+                predicted_value = obj.predict(data)
+                
+                if predicted_value[0] == 1:
+                    st.error("It is spam", icon="🚨")
+                elif predicted_value[0] == 0:
+                    st.success("It is not spam", icon="✅")
+            except Exception as e:
+                st.error(f"Error: {e}")
+
+if __name__ == "__main__":
+    start_predicting()
