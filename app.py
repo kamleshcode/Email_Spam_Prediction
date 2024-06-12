@@ -29,6 +29,7 @@
 # if __name__ == "__main__":
 #     start_predicting()
 
+import subprocess
 import streamlit as st
 import pandas as pd
 from emailproject.pipeline.prediction import PredictionPipeline
@@ -46,7 +47,8 @@ st.markdown(
     """
     <style>
     .stApp{
-        background-image: url("static\image.jpg");
+        background-image: url("st
+        atic\image.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -87,6 +89,9 @@ def start_predicting():
     
     if st.button("Predict", key="predict_button", help="Click to predict if the email is spam or not"):
         if email_text:
+            with st.spinner("🧠 Training the Machine Learning model..."):
+                subprocess.run(["python", "main.py"])
+                st.success("Model training completed.")
             with st.spinner("Analyzing..."):
                 try:
                     obj = PredictionPipeline()
