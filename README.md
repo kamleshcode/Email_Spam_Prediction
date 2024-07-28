@@ -43,7 +43,7 @@ Now open up your local host 0.0.0.0:8080
 ### STEPS:
 
 ```bash
- python -m venv myproj
+ python -m venv emproj
 ```
 
 ```bash
